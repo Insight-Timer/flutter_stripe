@@ -65,7 +65,7 @@ class _ThemeCardExampleState extends State<ThemeCardExample> {
       body: Column(
         children: [
           Theme(
-            data: theme,
+            data: ThemeData(),
             child: Container(
               height: 150,
               alignment: Alignment.center,
@@ -74,7 +74,13 @@ class _ThemeCardExampleState extends State<ThemeCardExample> {
               child: CardField(
                 autofocus: true,
                 enablePostalCode: postalCodeEnabled,
-                style: TextStyle(fontFamily: 'OtomanopeeOne'),
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Brandon Text',
+                  color: Color(0xFF272B2B),
+                ),
+                placeholderColor: Color(0xFF636D6D),
                 onCardChanged: (_) {},
                 decoration: InputDecoration(
                   labelText: theme.inputDecorationTheme.floatingLabelBehavior ==
@@ -104,15 +110,11 @@ class _ThemeCardExampleState extends State<ThemeCardExample> {
                         child: Container(
                           color: theme.value.scaffoldBackgroundColor,
                           child: ListTile(
-                            leading: Icon(
-                                theme.key == _index
-                                    ? Icons.check_circle
-                                    : Icons.circle,
+                            leading: Icon(theme.key == _index ? Icons.check_circle : Icons.circle,
                                 color: theme.value.colorScheme.secondary),
                             title: Text(
                               theme.key,
-                              style: TextStyle(
-                                  color: theme.value.colorScheme.secondary),
+                              style: TextStyle(color: theme.value.colorScheme.secondary),
                             ),
                             onTap: () {
                               setState(() {

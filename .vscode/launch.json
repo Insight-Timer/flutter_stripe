@@ -9,6 +9,21 @@
             "cwd": "example",
             "request": "launch",
             "type": "dart",
+            "args": [
+                "--web-port",
+                "8099",
+            ],
+        },
+        {
+            "name": "example with CORS disabled",
+            "cwd": "example",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--web-port",
+                "8099",
+                "--web-browser-flag=--disable-web-security",
+            ],
         },
         {
             "name": "Stripe.js web tests",

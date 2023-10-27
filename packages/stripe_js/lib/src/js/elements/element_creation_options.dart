@@ -1,6 +1,3 @@
-// Module elements
-import 'dart:js';
-
 import 'package:js/js.dart';
 import 'package:stripe_js/stripe_js.dart';
 
@@ -9,14 +6,14 @@ import 'package:stripe_js/stripe_js.dart';
 abstract class JsElementsCreateOptions {
   @JS("ElementsCreateOptions")
   external factory JsElementsCreateOptions({
-    JsArray<Font>? fonts,
+    List<Font>? fonts,
     String? locale,
     String? clientSecret,
     JsElementAppearance? appearance,
     String loader = "auto",
   });
 
-  external JsArray<Font> fonts;
+  external List<Font> fonts;
   external String locale;
   external String clientSecret;
   external JsElementAppearance appearance;

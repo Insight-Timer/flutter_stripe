@@ -47,20 +47,11 @@ abstract class ElementChangeResponse {
 @anonymous
 @JS()
 abstract class ElementOptions {
-  external JsArray<Font> get fonts;
-  external set fonts(JsArray<Font> v);
+  external List<Font> get fonts;
+  external set fonts(List<Font> v);
   external String get locale;
   external set locale(String v);
   external factory ElementOptions({JsArray<Font> fonts, String locale});
 }
 
-enum ElementsType {
-  card,
-  cardNumber,
-  cardExpiry,
-  cardCvc,
-  postalCode,
-  paymentRequestButton,
-  iban,
-  idealBank
-}
+enum ElementsType { card, cardNumber, cardExpiry, cardCvc, postalCode, paymentRequestButton, iban, idealBank }
