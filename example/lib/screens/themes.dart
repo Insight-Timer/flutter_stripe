@@ -65,7 +65,7 @@ class _ThemeCardExampleState extends State<ThemeCardExample> {
       body: Column(
         children: [
           Theme(
-            data: ThemeData(),
+            data: theme,
             child: Container(
               height: 150,
               alignment: Alignment.center,
@@ -74,20 +74,19 @@ class _ThemeCardExampleState extends State<ThemeCardExample> {
               child: CardField(
                 autofocus: true,
                 enablePostalCode: postalCodeEnabled,
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Brandon Text',
-                  color: Color(0xFF272B2B),
-                ),
-                placeholderColor: Color(0xFF636D6D),
+                style: TextStyle(fontFamily: 'Montserrat'),
                 onCardChanged: (_) {},
                 decoration: InputDecoration(
-                  labelText: theme.inputDecorationTheme.floatingLabelBehavior ==
-                          FloatingLabelBehavior.always
+                  labelText: theme.inputDecorationTheme.floatingLabelBehavior == FloatingLabelBehavior.always
                       ? 'Card Field'
                       : null,
                 ),
+                webFonts: [
+                  WebFont(
+                    family: 'Montserrat',
+                    cssSrc: 'https://fonts.googleapis.com/css?family=Montserrat',
+                  ),
+                ],
               ),
             ),
           ),

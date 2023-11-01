@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stripe_example/screens/card_payments/web_card_field_customization.dart';
 import 'package:stripe_example/screens/checkout/checkout_screen.dart';
 import 'package:stripe_example/screens/customer_sheet/customer_sheet_screen.dart';
 import 'package:stripe_example/screens/payment_sheet/payment_element/payment_element.dart';
@@ -54,8 +55,7 @@ class ExampleSection extends StatelessWidget {
       initiallyExpanded: expanded,
       childrenPadding: EdgeInsets.only(left: 20),
       title: Text(title),
-      children:
-          ListTile.divideTiles(tiles: children, context: context).toList(),
+      children: ListTile.divideTiles(tiles: children, context: context).toList(),
     );
   }
 }
@@ -121,7 +121,6 @@ class Example extends StatelessWidget {
           ],
         ),
       ],
-      expanded: true,
     ),
     ExampleSection(title: 'Customer sheet', children: [
       Example(
@@ -134,8 +133,11 @@ class Example extends StatelessWidget {
       title: 'Card Payments',
       children: [
         Example(
+          title: 'Web Card Field Customization',
+          builder: (c) => WebCardFieldCustomizationExample(),
+        ),
+        Example(
           title: 'Simple - Using webhooks',
-          style: TextStyle(fontWeight: FontWeight.w600),
           builder: (c) => WebhookPaymentScreen(),
         ),
         Example(
@@ -157,6 +159,7 @@ class Example extends StatelessWidget {
           platformsSupported: [DevicePlatform.android, DevicePlatform.ios],
         ),
       ],
+      expanded: true,
     ),
     ExampleSection(
       title: 'Wallets',
@@ -356,11 +359,7 @@ class Example extends StatelessWidget {
     Example(
       title: 'Checkout',
       builder: (c) => CheckoutScreenExample(),
-      platformsSupported: [
-        DevicePlatform.android,
-        DevicePlatform.ios,
-        DevicePlatform.web
-      ],
+      platformsSupported: [DevicePlatform.android, DevicePlatform.ios, DevicePlatform.web],
     ),
   ];
 }
