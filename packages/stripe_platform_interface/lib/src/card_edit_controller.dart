@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:stripe_platform_interface/src/models/card_field_input.dart';
 
-const String kDebugPCIMessage =
-    'Handling card data manually will break PCI compliance provided by Stripe. '
+const String kDebugPCIMessage = 'Handling card data manually will break PCI compliance provided by Stripe. '
     'Please make sure you understand the severe consecuences of it. '
     'https://stripe.com/docs/security/guide#validating-pci-compliance. \n'
     'To handle PCI compliance yourself and allow to edit card data programatically,'
@@ -28,8 +27,7 @@ abstract class CardFieldContext {
     }
   }
 
-  void updateCardDetails(
-      CardFieldInputDetails value, CardEditController controller) {
+  void updateCardDetails(CardFieldInputDetails value, CardEditController controller) {
     controller._updateDetails(value);
   }
 }
@@ -37,8 +35,7 @@ abstract class CardFieldContext {
 class CardEditController extends ChangeNotifier {
   CardEditController({CardFieldInputDetails? initialDetails})
       : initalDetails = initialDetails,
-        _details =
-            initialDetails ?? const CardFieldInputDetails(complete: false);
+        _details = initialDetails ?? const CardFieldInputDetails(complete: false);
 
   final CardFieldInputDetails? initalDetails;
   CardFieldInputDetails _details;
@@ -75,8 +72,7 @@ class CardEditController extends ChangeNotifier {
 
   CardFieldContext? _context;
   CardFieldContext get context {
-    assert(
-        _context != null, 'CardEditController is not attached to any CardView');
+    assert(_context != null, 'CardEditController is not attached to any CardView');
     return _context!;
   }
 }

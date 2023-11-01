@@ -14,6 +14,7 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
 
   late final _fontFamilyController = TextEditingController(text: _fontFamily);
   late final _cssSrcController = TextEditingController(text: _cssSrc);
+  final _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: CardField(
               autofocus: true,
+              focusNode: _focusNode,
               enablePostalCode: true,
               style: TextStyle(
                 fontSize: 20.0,
@@ -61,6 +63,24 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
                     labelText: 'CSS Source',
                   ),
                   onChanged: (value) => setState(() => _cssSrc = value),
+                ),
+                SizedBox(height: 16),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        _focusNode.requestFocus();
+                      },
+                      child: Text('Request Focus'),
+                    ),
+                    const SizedBox(width: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: Text('Lose Focus'),
+                    ),
+                  ],
                 ),
               ],
             ),

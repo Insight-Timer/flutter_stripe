@@ -89,6 +89,11 @@ class WebStripeCardState extends State<WebCardField> with CardFieldContext {
             ..onBlur(requestBlur)
             ..onFocus(requestFocus)
             ..onChange(onCardChanged);
+          if (widget.autofocus) {
+            element?.onReady((_) {
+              element?.focus();
+            });
+          }
         });
       }
     });
@@ -126,6 +131,7 @@ class WebStripeCardState extends State<WebCardField> with CardFieldContext {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Focus(
+        autofocus: widget.autofocus,
         focusNode: _effectiveNode,
         child: ConstrainedBox(
           constraints: constraints,
