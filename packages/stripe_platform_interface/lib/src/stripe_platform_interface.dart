@@ -174,6 +174,7 @@ abstract class StripePlatform extends PlatformInterface {
     FocusNode? focusNode,
     bool autofocus = false,
     bool dangerouslyUpdateFullCardDetails = false,
+    List<WebFont>? webFonts,
   }) {
     throw UnimplementedError();
   }

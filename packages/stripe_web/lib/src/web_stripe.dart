@@ -400,6 +400,7 @@ class WebStripe extends StripePlatform {
     FocusNode? focusNode,
     bool autofocus = false,
     bool dangerouslyUpdateFullCardDetails = false,
+    List<WebFont>? webFonts,
   }) {
     return WebCardField(
       controller: controller,
@@ -414,6 +415,7 @@ class WebStripe extends StripePlatform {
       focusNode: focusNode,
       autofocus: autofocus,
       dangerouslyUpdateFullCardDetails: dangerouslyUpdateFullCardDetails,
+      webFonts: webFonts,
     );
   }
 

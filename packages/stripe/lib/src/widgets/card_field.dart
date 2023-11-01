@@ -32,6 +32,7 @@ class CardField extends StatefulWidget {
     this.postalCodeHintText,
     this.controller,
     this.androidPlatformViewRenderType = AndroidPlatformViewRenderType.expensiveAndroidView,
+    this.webFonts,
   }) : super(key: key);
 
   /// Decoration related to the input fields.
@@ -113,6 +114,8 @@ class CardField extends StatefulWidget {
   /// Defaults to [AndroidPlatformViewRenderType.expensiveAndroidView]
   final AndroidPlatformViewRenderType androidPlatformViewRenderType;
 
+  final List<WebFont>? webFonts;
+
   @override
   // ignore: library_private_types_in_public_api
   _CardFieldState createState() => _CardFieldState();
@@ -184,6 +187,7 @@ class _CardFieldState extends State<CardField> {
             onFocus: widget.onFocus,
             placeholder: placeholder,
             style: style,
+            webFonts: widget.webFonts,
           )
         : CustomSingleChildLayout(
             delegate: const _NegativeMarginLayout(margin: platformMargin),

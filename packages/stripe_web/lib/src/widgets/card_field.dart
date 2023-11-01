@@ -29,6 +29,7 @@ class WebCardField extends StatefulWidget {
     this.focusNode,
     this.autofocus = false,
     this.dangerouslyUpdateFullCardDetails = false,
+    this.webFonts,
   })  : assert(constraints == null || constraints.debugAssertIsValid()),
         constraints = (width != null || height != null)
             ? constraints?.tighten(width: width, height: height) ??
@@ -46,6 +47,7 @@ class WebCardField extends StatefulWidget {
   final bool autofocus;
   final CardEditController controller;
   final bool dangerouslyUpdateFullCardDetails;
+  final List<WebFont>? webFonts;
   @override
   WebStripeCardState createState() => WebStripeCardState();
 }
@@ -133,27 +135,11 @@ class WebStripeCardState extends State<WebCardField> with CardFieldContext {
     );
   }
 
-  String _getBrandonTextFontCssSrc() {
-    final isHttps = Uri.base.scheme == 'https';
-    if (isHttps) {
-      debugPrint('Loaded font from local assets');
-      return Uri.base.origin + '/fonts.css';
-    } else {
-      debugPrint(
-          'You are currently using this application in a non secure environment (http). In order to load the correct font you should use a secure environment (https) OR if localhost use the arugment "--web-browser-flag=--disable-web-security" when running "flutter run" or the fonts will not load.');
-      return 'https://workplace.insighttimer.com/fonts.css';
-    }
-  }
-
   js.JsElementsCreateOptions createElementOptions() {
     final textColor = widget.style?.textColor;
+    final fonts = widget.webFonts?.map((webFont) => webFont.toFont()).toList() ?? [];
     return js.JsElementsCreateOptions(
-      fonts: [
-        Font(
-          family: 'Brandon Text',
-          cssSrc: _getBrandonTextFontCssSrc(),
-        )
-      ],
+      fonts: fonts,
       appearance: js.jsify(
         js.ElementAppearance(
           theme: js.ElementTheme.stripe,
@@ -225,5 +211,19 @@ class WebStripeCardState extends State<WebCardField> with CardFieldContext {
   @override
   void dangerouslyUpdateCardDetails(CardFieldInputDetails details) {
     throw UnimplementedError();
+  }
+}
+
+extension on WebFont {
+  Font toFont() {
+    return Font(
+      family: family,
+      src: src ?? '',
+      display: display ?? '',
+      style: style ?? '',
+      unicodeRange: unicodeRange ?? '',
+      weight: weight ?? '',
+      cssSrc: cssSrc ?? '',
+    );
   }
 }
