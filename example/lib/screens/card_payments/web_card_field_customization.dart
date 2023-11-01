@@ -12,9 +12,9 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
   late String _fontFamily = 'Montserrat';
   late String _cssSrc = 'https://fonts.googleapis.com/css?family=Montserrat';
 
+  final _cardEditController = CardEditController();
   late final _fontFamilyController = TextEditingController(text: _fontFamily);
   late final _cssSrcController = TextEditingController(text: _cssSrc);
-  final _focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
             alignment: Alignment.center,
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
             child: CardField(
+              controller: _cardEditController,
               autofocus: true,
-              focusNode: _focusNode,
               enablePostalCode: true,
               style: TextStyle(
                 fontSize: 20.0,
@@ -69,7 +69,7 @@ class _WebCardFieldCustomizationExampleState extends State<WebCardFieldCustomiza
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _focusNode.requestFocus();
+                        _cardEditController.focus();
                       },
                       child: Text('Request Focus'),
                     ),

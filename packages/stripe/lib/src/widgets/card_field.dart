@@ -33,7 +33,6 @@ class CardField extends StatefulWidget {
     this.controller,
     this.androidPlatformViewRenderType = AndroidPlatformViewRenderType.expensiveAndroidView,
     this.webFonts,
-    this.focusNode,
   }) : super(key: key);
 
   /// Decoration related to the input fields.
@@ -116,18 +115,13 @@ class CardField extends StatefulWidget {
   final AndroidPlatformViewRenderType androidPlatformViewRenderType;
 
   final List<WebFont>? webFonts;
-
-  final FocusNode? focusNode;
-
   @override
   // ignore: library_private_types_in_public_api
   _CardFieldState createState() => _CardFieldState();
 }
 
 class _CardFieldState extends State<CardField> {
-  late final _node = (widget.focusNode ?? FocusNode())
-    ..debugLabel = 'CardField'
-    ..descendantsAreFocusable = false;
+  final _node = FocusNode(debugLabel: 'CardField', descendantsAreFocusable: false);
 
   CardEditController? _fallbackContoller;
   CardEditController get controller {
@@ -154,9 +148,6 @@ class _CardFieldState extends State<CardField> {
 
   void updateState() {
     if (mounted) {
-      if (_node.hasFocus) {
-        controller.focus();
-      }
       setState(() {});
     }
   }
